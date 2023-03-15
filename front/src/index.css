@@ -9,23 +9,24 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --font-xl: 3.2rem;
+  --font-xl: 4.6rem;
   --font-l: 2.4rem;
   --font-m: 1.6rem;
   --font-s: 1.2rem;
   --font-xs: 1rem;
 
   --color-soft-menu: 108, 113, 133;
-  --color-menu: 173, 177, 189;
+  --color-menu: 178, 177, 189;
 
 
   --color-dark: 22, 22, 22;
   --color-white: 228, 228, 228;
   --color-yellow: 239, 221, 66;
+
   --color-bg: 33, 37, 43;
   --color-danger: 176, 0, 32;
 
-  --color-header: 45, 51, 59;
+  --color-header: 36, 40, 42;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -80,7 +81,7 @@ button:focus-visible {
     --color-menu: 20, 38, 103;
 
     --color-bg: 231, 234, 243;
-    --color-header: 245,245,245;
+    --color-header: 240,240,240;
 
     color: #213547;
     background-color: rgba(var(--color-bg));

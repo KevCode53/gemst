@@ -1,0 +1,44 @@
+.titleRow {
+  display: flex;
+  justify-content: center;
+  padding: 4rem;
+  padding-bottom: 1.6rem;
+  border-bottom: .2rem solid rgba(0,0,0, .3);
+}
+.titleRow a {
+  width: 5.5rem;
+  height: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  padding: 1rem;
+  border: .2rem solid rgba(var(--color-soft-menu), 1);
+  position: absolute;
+  bottom: 1.6rem;
+  right: 1.6rem;
+  background: rgba(0,0,0, .5);
+  box-shadow: .5rem .5rem 1rem rgba(0,0,0, .5);
+  /* border: none; */
+  /* background: none; */
+  transition: all .3s ease;
+}
+.titleRow a svg {
+  fill: rgba(var(--color-white),.3);
+  stroke: rgba(var(--color-white),.5);
+  transition: all .3s ease;
+}
+
+.titleRow a:hover svg{
+  stroke: rgba(var(--color-white));
+}
+
+@media (min-width: 768px) {
+  .titleRow {
+    justify-content: space-between;
+  }
+  .titleRow a {
+    position: relative;
+    display: block;
+  }
+}

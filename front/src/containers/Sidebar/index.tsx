@@ -6,7 +6,6 @@ import styles from './styles.module.css'
 
 const index = () => {
   const {isOpen, closeMenu, handleExpand, isExpand} = useMenu()
-  console.log(isExpand)
   return (
     <div className={`${styles.sidebarContainer} ${isOpen && styles.open} ${!isExpand && styles.expand}`}>
       <div className={styles.content}>
@@ -42,7 +41,7 @@ const index = () => {
 
         <div className={styles.menu}>
           <Link className={styles.active} to='/dashboard'>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-layout-board" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-layout-board" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <rect x="4" y="4" width="16" height="16" rx="2" />
               <path d="M4 9h8" />
@@ -51,8 +50,8 @@ const index = () => {
             </svg>
             <span>Dashboard</span>
           </Link>
-          <Link to='/dashboard'>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-devices-2" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <Link to='/maintenances'>
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-devices-2" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6" />
               <rect x="13" y="4" width="8" height="16" rx="1" />
@@ -64,7 +63,7 @@ const index = () => {
             <span>Maintenances</span>
           </Link>
           <Link to='/dashboard'>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-report" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-report" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
               <path d="M18 14v4h4" />
@@ -77,7 +76,7 @@ const index = () => {
             <span>Reports</span>
           </Link>
           <Link className={styles.logoutBtn} to='/dashboard'>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-power" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-power" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M7 6a7.75 7.75 0 1 0 10 0" />
               <line x1="12" y1="4" x2="12" y2="12" />

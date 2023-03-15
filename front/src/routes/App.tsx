@@ -7,6 +7,8 @@ import Layout from '../containers/Layout'
 // Import Pages
 import Home from '../pages/Home'
 import Dashboard from '../pages/Dashboard'
+import Maintenances from '../pages/Maintenances'
+import Register from '../pages/Register'
 import Error404 from '../pages/NotFound'
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
       <Layout>
         <Routes>
           <Route path='/' element={<Home /> } />
+          <Route path='/maintenances' element={<Maintenances /> } />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='maintenances-register' element={<Register/>} />
           <Route path='*' element={<Error404 />} />
         </Routes>
       </Layout>

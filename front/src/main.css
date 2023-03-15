@@ -16,3 +16,19 @@
   object-fit: contain;
   object-position: center;
 }
+.title {
+  font-size: clamp(var(--font-l), 2.5vw, var(--font-xl));
+  color: rgba(var(--color-blue))
+}
+input {
+  background: rgba(var(--color-white), .1);
+}
+
+@media (prefers-color-scheme: light) {
+  .title {
+    color: rgba(var(--color-soft-menu))
+  }
+  input {
+    background: rgba(var(--color-white));
+  }
+}

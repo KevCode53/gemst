@@ -14,7 +14,9 @@ const index = ({children}:{children:ReactNode}) => {
       <Sidebar />
       <div className={styles.content}>
         <Navbar />
-        {children}
+        <main className={styles.mainContent}>
+          {children}
+        </main>
       </div>
       </MenuContextProvider>
     </>
