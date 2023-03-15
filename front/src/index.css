@@ -28,6 +28,8 @@
 
   --color-header: 36, 40, 42;
 
+  --font-color: var(--color-white);
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: rgba(var(--color-bg));
@@ -82,8 +84,10 @@ button:focus-visible {
 
     --color-bg: 231, 234, 243;
     --color-header: 240,240,240;
+    --font-color: var(--color-dark);
 
-    color: #213547;
+
+    color: var(--font-color);
     background-color: rgba(var(--color-bg));
   }
   a:hover {

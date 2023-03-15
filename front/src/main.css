@@ -24,6 +24,7 @@ input {
   background: rgba(var(--color-white), .1);
 }
 
+
 @media (prefers-color-scheme: light) {
   .title {
     color: rgba(var(--color-soft-menu))

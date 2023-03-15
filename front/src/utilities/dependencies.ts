@@ -1,24 +1,24 @@
 export interface dependencieI {
-  value: string | undefined,
+  value: number | undefined,
   label: string | undefined
 }
 
 export const dependencies = [
-  {value: 'Concepciion las Minas', label:'Concepciion las Minas'},
-  {value: 'Olopa', label:'Olopa'},
-  {value: 'San Juan Ermita', label:'San Juan Ermita'},
-  {value: 'Camotán', label:'Camotán'},
-  {value: 'San Jacinto', label:'San Jacinto'},
-  {value: 'San José la Arada', label:'San José la Arada'},
-  {value: 'Agencia Fiscal en el Municipio de Ipala', label:'Agencia Fiscal en el Municipio de Ipala'},
-  {value: 'Agencia Fiscal en el Municipio de Quezaltepeque', label:'Agencia Fiscal en el Municipio de Quezaltepeque'},
-  {value: 'Distrito Chiquimula', label:'Distrito Chiquimula'},
-  {value: 'Narco-Actividad Oriente', label:'Narco-Actividad Oriente'},
-  {value: 'Liquidadora Chiquimula', label:'Liquidadora Chiquimula'},
-  {value: 'Fiscalia de la Mujer Chiquimula', label:'Fiscalia de la Mujer Chiquimula'},
-  {value: 'Organismo Judicial Chiquimula', label:'Organismo Judicial Chiquimula'},
-  {value: 'Esquipulas', label:'Esquipulas'},
-  {value: 'Jocotán', label:'Jocotán'},
+  {value: 1, label:'Concepciion las Minas'},
+  {value: 2, label:'Olopa'},
+  {value: 3, label:'San Juan Ermita'},
+  {value: 4, label:'Camotán'},
+  {value: 5, label:'San Jacinto'},
+  {value: 6, label:'San José la Arada'},
+  {value: 7, label:'Agencia Fiscal en el Municipio de Ipala'},
+  {value: 8, label:'Agencia Fiscal en el Municipio de Quezaltepeque'},
+  {value: 9, label:'Distrito Chiquimula'},
+  {value: 10, label:'Narco-Actividad Oriente'},
+  {value: 11, label:'Liquidadora Chiquimula'},
+  {value: 12, label:'Fiscalia de la Mujer Chiquimula'},
+  {value: 13, label:'Organismo Judicial Chiquimula'},
+  {value: 14, label:'Esquipulas'},
+  {value: 15, label:'Jocotán'},
 ]
 
 const wait = (ms:number) =>
@@ -31,7 +31,7 @@ const getRandom = (min: number, max: number) => {
 }
 
 export const search = async (word:string) => {
-  await wait(getRandom(0, 5000))
+  await wait(getRandom(0, 500))
 
   return dependencies.filter(d => {
     const option = d.label.toLowerCase()

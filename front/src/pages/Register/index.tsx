@@ -1,9 +1,11 @@
+import Autocomplete from '../../components/UI/Autocomplete'
+
 // Import Styles Modules
 import styles from './styles.module.css'
 
 const index = () => {
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault()
   }
 
@@ -14,6 +16,8 @@ const index = () => {
       </div>
       <div className={styles.formContainer}>
         <form action="" onSubmit={handleSubmit}>
+          <Autocomplete placeholder='Fiscalia...' options={[]} />
+          <button type='submit'>Registrar</button>
         </form>
       </div>
     </>

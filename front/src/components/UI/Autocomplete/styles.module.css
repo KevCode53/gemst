@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  background: rgba(0,0,0,.1);
+  border-radius: 1rem;
+  margin: 1.2rem 0;
+}
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1.4rem;
+  position: relative;
+}
+.focusControl {
+  border-bottom: .2rem solid rgba(0,0,0,.1);
+}
+.loading {
+  right: 4.5rem;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  gap: .5rem;
+}
+.loading span {
+  width: .8rem;
+  height: .8rem;
+  border-radius: 100%;
+  background: #000;
+}
+
+.value_input {
+  width: 100%;
+  background: transparent;
+  text-align: left;
+  position: relative;
+  font-size: var(--font-m);
+  border-right: .1rem solid rgba(var(--color-soft-menu));
+}
+.value_input label {
+  color: rgba(var(--font-color),.6);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.indicator {
+  width: 3.5rem;
+  padding: .5rem;
+}
+
+.indicator svg {
+  transition: all .3s ease;
+}
+.indicator:hover svg {
+  stroke: rgba(var(--color-soft-menu));
+  stroke-width: .2rem;
+}
