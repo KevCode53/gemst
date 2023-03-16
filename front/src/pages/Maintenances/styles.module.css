@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 4rem;
+  align-items: center;
   padding-bottom: 1.6rem;
   border-bottom: .2rem solid rgba(0,0,0, .3);
 }
@@ -35,10 +36,20 @@
 
 @media (min-width: 768px) {
   .titleRow {
+    align-items: center;
     justify-content: space-between;
+    overflow: hidden;
   }
   .titleRow a {
-    position: relative;
-    display: block;
+    position: static;
+    display: flex;
+    background: none;
+    border: transparent;
+    box-shadow: none;
+    padding: 0;
   }
+  .titleRow a svg {
+    height: 100%;
+  }
+
 }

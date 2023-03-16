@@ -1,81 +1,77 @@
-import React, { useState } from 'react';
-import { useAutocomplete } from '../../../hooks/useAutocomplete';
+// Import Styles Module
+import { useState } from 'react';
+import { search } from '../../../utilities/dependencies';
 import { getActiveToken } from '../../../utilities/getActiveToken';
 import styles from './styles.module.css'
 
-const index = (
-  {
-    placeholder,
-    options
-  }:{
-    placeholder:string,
-    options:[]}
-  ) => {
+const index = () => {
+  const [inputText, setInputText] = useState({label: ''})
+  const [showAutocomplete, setShowAutocomplete] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [optionResults, setOptionResult] = useState({})
+  const [isFocusMouseOption, setIsFocusMouseOption] = useState(false)
 
-  const {
-    searchOptions,
-    optionResult,
-    setOptionResult,
-    setShowOptions,
-    showOptions,
-    optionList
-  } = useAutocomplete()
-  const [isFocus, setIsFocus] = useState(false)
-
-  const handleInputChange:React.ChangeEventHandler<HTMLInputElement> = async(event) => {
+  const handleInputChange:
+  React.ChangeEventHandler<HTMLInputElement> 
+  = async(event) => {
     const {value, selectionEnd=0} = event.target
-    if (!value) {return setOptionResult({results:[]}) }
-    if (optionList[value]) return
-    const {word} = await getActiveToken(value, selectionEnd)
-    await searchOptions(word)
+    setInputText({label:value})
+    if (!value || optionResults[value]) return
+
+    const {word} = getActiveToken(value, selectionEnd)
+    setShowAutocomplete(/\w{3,15}$/.test(word))
+    setLoading(true)
+    setOptionResult((prev) => ({...prev, [word]: {results:[], loading:true}}))
+    const results = await search(word)
+    setOptionResult((prev) => ({...prev, [word]: {results:results, loading:false}}))
   }
 
+  const handleKeyDown = () => {
+    
+  }
 
+  const resultList = optionResults[inputText.label]?.results ?? []
+  const isLoading = optionResults[inputText.label]?.loading
+
+  const handleSetInputValue = (value:number, label:string) => {
+    setInputText({label})
+  }
+  
   return (
     <div className={styles.container}>
-      <div className={`${showOptions && styles.focusControl} ${styles.control}`}>
-        {/* {optionResult?.loading &&
-          ( */}
+      <div className={styles.control}>
+        {isLoading &&
+          (
             <div className={styles.loading}>
               <span></span>
               <span></span>
               <span></span>
             </div>
-          {/* )
-        } */}
-        <input
-          placeholder={placeholder}
-          type='text'
-          onFocus={() => setShowOptions(true)}
-          onBlur={() => setTimeout(() => {
-            setShowOptions(false)
-          }, 500)}
-          className={styles.value_input}
+          )
+        }
+        <input 
+          type="text"
+          value={inputText.label}
           onChange={handleInputChange}
+          className={`${styles.value_input}`}
         />
-        <div className={styles.indicator}>
-          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-arrow-down" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <line x1="12" y1="5" x2="12" y2="19" />
-            <line x1="18" y1="13" x2="12" y2="19" />
-            <line x1="6" y1="13" x2="12" y2="19" />
-          </svg>
-        </div>
+        <input type="number" style={{display: 'none'}} />
       </div>
       <div className={styles.menu}>
-        <div className={styles.menu_list}>
-          {showOptions && optionResult?.loading===true
-            ? <div>Loading</div>
-            : showOptions && optionResult?.results.map(({value, label}) => (
-              <div key={value} className={styles.option}>
-                {label}
-              </div>
+        <ul className={styles.menu_list}>
+          {showAutocomplete && isLoading === true 
+            ? <li>loading</li>
+            : showAutocomplete && resultList.map(({value, label}, index) => (
+              <li
+                onMouseEnter={() => setIsFocusMouseOption(true)}
+                onMouseLeave={() => setIsFocusMouseOption(false)}
+                key={value}
+                className={`${styles.option} ${isFocusMouseOption && styles.focus}`}
+                onClick={() => handleSetInputValue(value, label)}
+              >{label}</li>
             ))
           }
-          {/* <div key={option.value} className={styles.option}>
-            {option.label}
-          </div> */}
-        </div>
+        </ul>
       </div>
     </div>
   );

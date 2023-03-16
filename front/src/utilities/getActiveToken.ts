@@ -25,6 +25,5 @@ export const getActiveToken = (input:string, cursorPosition:number):resultTokenI
   const result = words.find(
     ({range}) => range[0] <= cursorPosition && range[1] >= cursorPosition
   )
-  // console.log(result)
   return result
 }

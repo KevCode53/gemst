@@ -40,7 +40,7 @@ const index = () => {
         </div>
 
         <div className={styles.menu}>
-          <Link className={styles.active} to='/dashboard'>
+          <Link onClick={closeMenu} className={styles.active} to='/dashboard'>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-layout-board" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <rect x="4" y="4" width="16" height="16" rx="2" />
@@ -50,7 +50,7 @@ const index = () => {
             </svg>
             <span>Dashboard</span>
           </Link>
-          <Link to='/maintenances'>
+          <Link onClick={closeMenu} to='/maintenances'>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-devices-2" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M10 15h-6a1 1 0 0 1 -1 -1v-8a1 1 0 0 1 1 -1h6" />
@@ -62,7 +62,7 @@ const index = () => {
             </svg>
             <span>Maintenances</span>
           </Link>
-          <Link to='/dashboard'>
+          <Link onClick={closeMenu} to='/dashboard'>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-report" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697" />
@@ -75,7 +75,7 @@ const index = () => {
             </svg>
             <span>Reports</span>
           </Link>
-          <Link className={styles.logoutBtn} to='/dashboard'>
+          <Link onClick={closeMenu} className={styles.logoutBtn} to='/dashboard'>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-power" width="36" height="36" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
               <path d="M7 6a7.75 7.75 0 1 0 10 0" />
