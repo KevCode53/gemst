@@ -1,6 +1,6 @@
-export interface dependencieI {
-  value: number | undefined,
-  label: string | undefined
+export interface optionsI {
+  value: number,
+  label: string
 }
 
 export const dependencies = [
@@ -30,10 +30,10 @@ const getRandom = (min: number, max: number) => {
   return Math.random() * (max - min) + min
 }
 
-export const search = async (word:string) => {
+export const search = async (word:string, options:optionsI[]) => {
   await wait(getRandom(0, 500))
 
-  return dependencies.filter(d => {
+  return options.filter(d => {
     const option = d.label.toLowerCase()
     const wordLower = word.toLowerCase()
     return option.includes(wordLower)

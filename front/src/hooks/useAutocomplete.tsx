@@ -1,87 +1,50 @@
-import { useEffect, useState } from "react"
-import { search } from "../utilities/dependencies"
-import { getActiveToken } from "../utilities/getActiveToken"
-import { removeAccents } from "../utilities/removeAccents"
+import { useState, useEffect } from "react"
+import { optionsI } from "../components/UI/Autocomplete/interfaces"
+import { getActiveToken } from "../components/UI/Autocomplete/getActiveToken.utilities"
+import { search } from "../components/UI/Autocomplete/search.utilities"
 
-interface optionListItemI {
-  results: [];
-  loading?: boolean;
-}
-type inputText = {
-  value?: number;
-  label: string;
-}
-type key = string
-interface optionListI {
-  key: optionListItemI
+interface objectsResultI {
+  results: optionsI[],
+  loading: boolean
 }
 
-export const useAutocomplete = (
-) => {
+interface optionResultsI {
+  [key:string] : objectsResultI
+}
 
-  const [textValue, setTextValue] = useState<inputText>({label:''})
-  const [showOptions, setShowOptions] = useState(false)
-  const [optionList, setOptionList] = useState<optionListItemI>({results:[]})
-  const [optionResult, setOptionResult] = useState<optionListItemI>()
-  const [valueSelect, setValuSelect] = useState({})
+export const useAutocomplete = (options:optionsI[]) => {
+  const [inputText, setInputText] = useState<optionsI>({value:-1, label: ''})
   const [currentIndex, setCurrentIndex] = useState(-1)
+  const [showAutocomplete, setShowAutocomplete] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [optionResults, setOptionResult] = useState<optionResultsI>({})
+  const [isFocusMouseOption, setIsFocusMouseOption] = useState(false)
 
-  const searchOptions = async (inputValue:string) => {
-    setTextValue({label:inputValue})
-    setOptionList((prev) => ({...prev, [inputValue]: {results: [], loading:true}}))
-    const options = await search(removeAccents(inputValue))
-    setOptionList((prev) => ({...prev, [inputValue]: {results: options, loading:false}}))
-    // setShowOptions(true)
+  const handleInputChange:
+  React.ChangeEventHandler<HTMLInputElement> = async(event) => {
+    const {value, selectionEnd=0} = event.target
+
+    setInputText({value:-1, label:value})
+    if(!value || optionResults[value])  return
+
+    const {word} = getActiveToken(value, selectionEnd)
+
+    setShowAutocomplete(/\w{3,15}$/.test(word))
+
+    setOptionResult((prev) => (
+        {...prev, [word]: {results: [], loading:true}}
+      )
+    )
+    const results = await search(word, options)
+    console.log(results)
+    setOptionResult((prev) => (
+        {...prev, [word]: {results: results, loading:true}}
+      )
+    )
   }
 
-  useEffect(()=>{
-    const loading = optionList[textValue.label]?.loading
-    const results = optionList[textValue.label]?.results ?? []
-    setOptionResult({results: results, loading:loading})
-    // if (textValue?.length <= 0) setOptionList([])
-  },[optionList])
+  // console.log(optionResults)
 
-  const handleSelect = ({value, label}:{value:number, label:string}) => {
-    setTextValue({value, label})
-  }
-
-  const handleKeysSelect = (code:string) => {
-    if (code === 'ArrowDown') {
-      setCurrentIndex(prev => {
-        if (prev > (optionResult?.results.length - 2)) {
-          return prev = 0
-        } else {
-          return Math.min(prev + 1)
-        }
-      })
-    } else if (code === 'ArrowUp') {
-      setCurrentIndex(prev => {
-        if (prev <= 0 ) {
-          return prev = (optionResult?.results.length - 1)
-        } else {
-          return Math.min(prev - 1)
-        }
-      })
-    } else if (code === 'Enter') {
-      const newValue = optionList[textValue.label].results[currentIndex]
-      setTextValue(newValue)
-      console.log(newValue)
-    }
-  }
-
-
-  return {
-    searchOptions,
-    handleSelect,
-    optionList,
-    optionResult,
-    setOptionResult,
-    setOptionList,
-    setShowOptions,
-    handleKeysSelect,
-    currentIndex,
-    textValue,
-    setTextValue,
-    showOptions
-  }
+  return {handleInputChange, inputText, showAutocomplete, setShowAutocomplete, optionResults}
 }
+
